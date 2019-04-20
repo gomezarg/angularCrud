@@ -18,6 +18,10 @@ const routes: Routes = [
   {
     path: 'movies/add',
     component: MovieFormComponent
+  },
+  {
+    path: 'movies/edit/:id',
+    component:MovieFormComponent
   }
 ];
 

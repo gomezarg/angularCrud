@@ -24,7 +24,7 @@ export class FilmsService {
   saveFilm(movie: Movie){
     return this.http.post(`${this.API_URI}/films`, movie);
   }
-  updateFilm(id : string , updateFilm: Movie): Observable<Movie>{
+  updateFilm(id : string | number , updateFilm: Movie): Observable<Movie>{
     return this.http.put(`${this.API_URI}/films/${id}`, updateFilm);
     
 

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostBinding } from '@angular/core';
 
 import { FilmsService } from '../../services/films.service';
 import { Movie } from 'src/app/models/Movie';
@@ -9,11 +9,15 @@ import { Movie } from 'src/app/models/Movie';
   styleUrls: ['./movie-list.component.css']
 })
 export class MovieListComponent implements OnInit {
+  @HostBinding('class') classes = 'row';
   movies: any = [];
 
   constructor(private filmsService: FilmsService) { }
 
   ngOnInit() {
+    this.getMovies();
+  }
+  getMovies(){
     this.filmsService.getMovies().subscribe(
       res => {
         this.movies = res;
@@ -21,5 +25,13 @@ export class MovieListComponent implements OnInit {
       err => console.error(err)
     );
   }
-
+  deleteFilm(id: string){
+    this.filmsService.deleteFilm(id).subscribe(
+      res => {
+        console.log(res);
+        this.getMovies();
+      },
+      err => console.log(err)
+    );
+  }
 }
